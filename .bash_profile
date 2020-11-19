@@ -56,13 +56,12 @@ alias pet="cd ~/dev/sandbox"
 alias c='code .'
 alias ns='npm start'
 alias nr='npm run'
+alias nd='npm run dev'
+alias yd='yarn dev'
 alias l="ls" # List files in current directory
 alias ll="ls -al" # List all files in current directory in long list format
 alias la="ls -al" # List all files in current directory in long list format
 alias o="open ." # Open the current directory in Finder
-alias yarnd= "yarn dev"
-alias npms= "npm start"
-alias npmd= "npm dev"
 
 # ----------------------
 # Git Aliases
