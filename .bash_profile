@@ -1,4 +1,4 @@
-HOST_NAME=mbp
+HOST_NAME=cazaustre-mbp15
 
 source ~/.nvm/nvm.sh
 nvm use stable
@@ -6,7 +6,6 @@ shopt -s autocd
 shopt -s histappend
 
 export PATH=$PATH:$HOME/bin
-export PATH="$HOME/.cargo/bin:$PATH"
 export COWPATH="$COWPATH:$HOME/.cowsay"
 
 export HISTSIZE=5000
@@ -24,30 +23,36 @@ bldgrn='\e[1;32m' # Bold Green
 bldpur='\e[1;35m' # Bold Purple
 txtrst='\e[0m'    # Text Reset
 
-emojis=("💻" "☕️" "🍺" "🍕" "🥑" "🎒")
+emojis=("💻 " "☕️ " "🍺 " "🍕 " "🥑 " "🎒 ")
 
 EMOJI=${emojis[$RANDOM % ${#emojis[@]} ]}
 
 print_before_the_prompt () {
-    dir="📂 ${PWD}"
+    dir="🗂  ${PWD}"
     home=$HOME
     dir=${dir/"$HOME"/"~"}
-    node=":: ⬢ $(node -v)"
-    rust=":: ⚙️  v$(rustc -V | awk '{print $2}')"
-    printf "\n $txtred%s :: $bldpur%s $txtgrn%s %s $txtrst%s\n" " ${HOST_NAME}" "$dir" "$(vcprompt)" "${node}" "${rust}"
+    node=" »  ⬢ $(node -v)"
+    deno=" »  🦕 $(deno --version)"
+    rust=" »  ⚙️  v$(rustc -V | awk '{print $2}')"
+    printf "\n $txtred%s » $bldpur%s $txtgrn%s %s $txtrst%s\n" " ${HOST_NAME}" "$dir" "$(vcprompt)" "${node}"
 }
 
 PROMPT_COMMAND=print_before_the_prompt
 PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
-PS1="$EMOJI $ "
+PS1="$EMOJI "
 
 fortune | cowsay -f fine
 
-function mkcd(){
+function mkcd() {
 	mkdir $1 && cd $1
 }
 
+# -------
 # Aliases
+# -------
+alias dev="cd ~/dev"
+alias work="cd ~/dev/work"
+alias pet="cd ~/dev/sandbox"
 alias c='code .'
 alias ns='npm start'
 alias nr='npm run'
@@ -55,11 +60,18 @@ alias l="ls" # List files in current directory
 alias ll="ls -al" # List all files in current directory in long list format
 alias la="ls -al" # List all files in current directory in long list format
 alias o="open ." # Open the current directory in Finder
+alias yarnd= "yarn dev"
+alias npms= "npm start"
+alias npmd= "npm dev"
 
+# ----------------------
 # Git Aliases
+# ----------------------
 alias gaa='git add .'
 alias gcm='git commit -m'
 alias gi='git init'
 alias gl='git log'
 alias gp='git pull'
 alias gpsh='git push'
+
+export PATH="$HOME/.cargo/bin:$PATH"
